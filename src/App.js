@@ -1,28 +1,63 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, useState, useEffect } from 'react';
+import { hot } from 'react-hot-loader/root';
+import { colors, utils } from './utils';
+import PlayNumber from './PlayNumber';
+import StarsDisplay from './StarsDisplay';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const StarMatch = () => {
+  const [stars, setStars] = useState(utils.random(1, 9));
+  const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
+  const [candidateNums, setCandidateNums] = useState([]);
+  // candidateNums
+  // wrongNums
+  // usedNums
+  const candidatesAreWrong = utils.sum(candidateNums) > stars;
+
+  const onNumberClick = () => {
+
   }
+
+  const numberStatus = (number) => {
+    if (!availableNums.includes(number)) {
+      return 'used';
+    }
+    if (candidateNums.includes(number)) {
+      return candidatesAreWrong ? 'wrong' : 'candidate';
+    }
+    return 'available';
+  }
+
+  return (
+    <div className="game">
+      <div className="help">
+        Pick 1 or more numbers that sum to the number of stars
+      </div>
+      <div className="body">
+        <div className="left">
+          <StarsDisplay count={stars} />
+        </div>
+        <div className="right">
+          {utils.range(1, 9).map(
+            number => <PlayNumber
+              key={number}
+              status={numberStatus(number)}
+              number={number} />
+          )}
+        </div>
+      </div>
+      <div className="timer">Time Remaining: 10</div>
+    </div>
+  );
+};
+
+
+function App() {
+  return (
+    <div>
+      <StarMatch />
+    </div>
+  );
 }
 
-export default App;
+export default hot(App);
