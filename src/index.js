@@ -1,5 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import StarMatch from './StarMatch';
 
-ReactDOM.render(<App />, document.body.appendChild(document.createElement('div')));
+ReactDOM.render(<StarMatch />, document.body.appendChild(document.createElement('div')));

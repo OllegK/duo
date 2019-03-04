@@ -5,7 +5,7 @@ import './PlayNumber.css';
 const PlayNumber = props => (
   <button
     className="number"
-    style = {{ backgroundColor: colors[props.status]}}
+    style={{ backgroundColor: colors[props.status] }}
     onClick={() => props.onClick(props.number, props.status)}>
     {props.number}
   </button>
