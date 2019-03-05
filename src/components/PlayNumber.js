@@ -8,7 +8,8 @@ const PlayNumber = props => (
     type="button"
     className="number"
     style={{ backgroundColor: colors[props.status] }}
-    onClick={() => props.onClick(props.number, props.status)}>
+    onClick={() => props.onClick(props.number, props.status)}
+  >
     {props.number}
   </button>
 );

@@ -46,24 +46,27 @@ const Game = (props) => {
       </div>
       <div className="body">
         <div className="left">
-          {gameStatus !== 'active' ? (
-            <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
-          ) : (
-              <StarsDisplay count={stars} />
-            )}
+          {gameStatus !== 'active'
+            ? (<PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />)
+            : (<StarsDisplay count={stars} />) }
         </div>
         <div className="right">
           {utils.range(1, 9).map(
-            number => (<PlayNumber
-              key={number}
-              status={numberStatus(number)}
-              number={number}
-              onClick={onNumberClick} />)
+            number => (
+              <PlayNumber
+                key={number}
+                status={numberStatus(number)}
+                number={number}
+                onClick={onNumberClick}
+              />
+            ),
           )}
         </div>
       </div>
       <div className="timer">
-        Time Remaining: {secondsLeft}
+        Time Remaining:
+        {' '}
+        {secondsLeft}
       </div>
     </div>
   );
