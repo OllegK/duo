@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { utils } from './utils';
+import { utils } from '../utils/utils';
 import './StarsDisplay.css';
 
 const StarsDisplay = props => (

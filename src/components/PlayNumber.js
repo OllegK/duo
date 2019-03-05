@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors } from './utils';
+import { colors } from '../utils/utils';
 import './PlayNumber.css';
 
 const PlayNumber = props => (

@@ -1,10 +1,10 @@
 import React from 'react';
-import { utils } from './utils';
+import { utils } from '../utils/utils';
 import PlayNumber from './PlayNumber';
 import StarsDisplay from './StarsDisplay';
 import PlayAgain from './PlayAgain';
 import './Game.css';
-import useGameState from './gameState';
+import useGameState from '../state/gameState';
 
 const Game = (props) => {
   const {

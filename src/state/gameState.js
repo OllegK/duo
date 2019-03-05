@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { utils } from './utils';
+import { utils } from '../utils/utils';
 
 const useGameState = () => {
   const [stars, setStars] = useState(utils.random(1, 9));
