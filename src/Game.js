@@ -26,7 +26,7 @@ const Game = (props) => {
       : candidateNums.filter(cn => cn !== number);
 
     setGameState(newCandidateNums);
-  }
+  };
 
   const numberStatus = (number) => {
     if (!availableNums.includes(number)) {
@@ -36,7 +36,7 @@ const Game = (props) => {
       return candidatesAreWrong ? 'wrong' : 'candidate';
     }
     return 'available';
-  }
+  };
 
   return (
     <div className="game">
@@ -61,7 +61,9 @@ const Game = (props) => {
           )}
         </div>
       </div>
-      <div className="timer">Time Remaining: {secondsLeft}</div>
+      <div className="timer">
+        Time Remaining: {secondsLeft}
+      </div>
     </div>
   );
 };

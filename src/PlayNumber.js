@@ -9,6 +9,6 @@ const PlayNumber = props => (
     onClick={() => props.onClick(props.number, props.status)}>
     {props.number}
   </button>
-)
+);
 
 export default PlayNumber;

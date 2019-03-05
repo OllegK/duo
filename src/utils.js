@@ -23,8 +23,8 @@ const utils = {
   randomSumIn: (arr, max) => {
     const sets = [[]];
     const sums = [];
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0, len = sets.length; j < len; j++) {
+    for (let i = 0; i < arr.length; i += 1) {
+      for (let j = 0, len = sets.length; j < len; j += 1) {
         const candidateSet = sets[j].concat(arr[i]);
         const candidateSum = utils.sum(candidateSet);
         if (candidateSum <= max) {

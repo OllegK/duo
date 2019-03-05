@@ -14,6 +14,7 @@ const useGameState = () => {
       }, 1000);
       return () => clearTimeout(timerId);
     }
+    return;
   });
 
   const setGameState = (newCandidateNums) => {
@@ -21,16 +22,17 @@ const useGameState = () => {
       setCandidateNums(newCandidateNums);
     } else { // right pick
       const newAvailableNums = availableNums.filter(
-        n => !newCandidateNums.includes(n)
+        n => !newCandidateNums.includes(n),
       );
       setStars(utils.randomSumIn(newAvailableNums, 9));
       setAvailableNums(newAvailableNums);
       setCandidateNums([]);
     }
-  }
+  };
 
-  return { stars, availableNums, candidateNums, secondsLeft, setGameState };
-
-}
+  return {
+    stars, availableNums, candidateNums, secondsLeft, setGameState,
+  };
+};
 
 export default useGameState;

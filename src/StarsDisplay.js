@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { utils } from './utils';
 import './StarsDisplay.css';
 
@@ -9,5 +10,9 @@ const StarsDisplay = props => (
     )}
   </>
 );
+
+StarsDisplay.propTypes = {
+  count: PropTypes.number.isRequired,
+};
 
 export default StarsDisplay;
