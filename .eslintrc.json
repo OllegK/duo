@@ -11,8 +11,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": false,
-    "mocha": false
+    "amd": true,
+    "node": true
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]

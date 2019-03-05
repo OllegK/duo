@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { utils } from '../utils/utils';
 import PlayNumber from './PlayNumber';
 import StarsDisplay from './StarsDisplay';
@@ -8,7 +9,7 @@ import useGameState from '../state/gameState';
 
 const Game = (props) => {
   const {
-    stars, availableNums, candidateNums, secondsLeft, setGameState
+    stars, availableNums, candidateNums, secondsLeft, setGameState,
   } = useGameState();
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
@@ -53,11 +54,11 @@ const Game = (props) => {
         </div>
         <div className="right">
           {utils.range(1, 9).map(
-            number => <PlayNumber
+            number => (<PlayNumber
               key={number}
               status={numberStatus(number)}
               number={number}
-              onClick={onNumberClick} />
+              onClick={onNumberClick} />)
           )}
         </div>
       </div>
@@ -66,6 +67,10 @@ const Game = (props) => {
       </div>
     </div>
   );
+};
+
+Game.propTypes = {
+  startNewGame: PropTypes.func.isRequired,
 };
 
 export default Game;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PlayAgain.css';
 
 const PlayAgain = props => (
@@ -9,8 +10,14 @@ const PlayAgain = props => (
     >
       {props.gameStatus === 'lost' ? 'Game Over' : 'Nice'}
     </div>
-    <button onClick={props.onClick}>Play Again</button>
+    <button type="button" onClick={props.onClick}>Play Again</button>
   </div>
 );
+
+PlayAgain.propTypes = {
+  gameStatus: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 
 export default PlayAgain;

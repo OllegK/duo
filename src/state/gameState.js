@@ -14,7 +14,7 @@ const useGameState = () => {
       }, 1000);
       return () => clearTimeout(timerId);
     }
-    return;
+    return null;
   });
 
   const setGameState = (newCandidateNums) => {
