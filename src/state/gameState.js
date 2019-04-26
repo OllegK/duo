@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { utils } from '../utils/utils';
 
 const useGameState = () => {

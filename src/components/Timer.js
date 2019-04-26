@@ -17,11 +17,10 @@ const methods = {
         clearInterval(inter);
       }
     }, 1000);
-  }
+  },
 };
 
-const Timer = props => {
-
+const Timer = (props) => {
   if (props.gameStatus !== 'active') {
     clearInterval(inter);
   }
@@ -34,11 +33,12 @@ const Timer = props => {
       {' '}
       {seconds}
     </div>
-  )
+  );
 };
 
 Timer.propTypes = {
-
+  seconds: PropTypes.number.isRequired,
+  gameStatus: PropTypes.string.isRequired,
 };
 
 export default lifecycle(methods)(Timer);
