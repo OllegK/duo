@@ -12,8 +12,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
-    "react-hot-loader": "^4.6.5",
-    "react-pure-lifecycle": "^3.0.0"
+    "react-hot-loader": "^4.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

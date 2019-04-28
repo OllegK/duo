@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Timer.css';
-import lifecycle from 'react-pure-lifecycle';
 
-let seconds;
-let setSeconds;
 let inter;
 
-const methods = {
-  componentDidMount(props) {
+const Timer = (props) => {
+
+  if (props.gameStatus !== 'active') {
+    clearInterval(inter);
+  }
+
+  const [seconds, setSeconds] = useState(props.seconds);
+
+  useEffect(() => {
     inter = setInterval(() => {
       if (seconds > 0) {
         setSeconds(currentSeconds => currentSeconds - 1);
@@ -17,15 +21,7 @@ const methods = {
         clearInterval(inter);
       }
     }, 1000);
-  },
-};
-
-const Timer = (props) => {
-  if (props.gameStatus !== 'active') {
-    clearInterval(inter);
-  }
-
-  ([seconds, setSeconds] = useState(props.seconds));
+  }, []);
 
   return (
     <div className="timer">
@@ -39,6 +35,7 @@ const Timer = (props) => {
 Timer.propTypes = {
   seconds: PropTypes.number.isRequired,
   gameStatus: PropTypes.string.isRequired,
+  onHittingZero: PropTypes.func.isRequired,
 };
 
-export default lifecycle(methods)(Timer);
+export default Timer;
