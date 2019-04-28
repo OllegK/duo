@@ -64,7 +64,7 @@ const Game = (props) => {
           )}
         </div>
       </div>
-      <Timer seconds={secondsLeft} onHittingZero={setSeconds} gameStatus={gameStatus} />
+      <Timer secondsCount={secondsLeft} onHittingZero={setSeconds} gameStatus={gameStatus} />
     </div>
   );
 };

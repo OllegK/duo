@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import './Timer.css';
 
-let inter;
-
 const Timer = (props) => {
+  const [seconds, setSeconds] = useState(props.secondsCount);
+  const intervalRef = useRef();
+  const secondsRef = useRef(seconds);
+  secondsRef.current = seconds;
 
   if (props.gameStatus !== 'active') {
-    clearInterval(inter);
+    clearInterval(intervalRef.current);
   }
 
-  const [seconds, setSeconds] = useState(props.seconds);
-
   useEffect(() => {
-    inter = setInterval(() => {
-      if (seconds > 0) {
+    intervalRef.current = setInterval(() => {
+      if (secondsRef.current > 0) {
         setSeconds(currentSeconds => currentSeconds - 1);
       } else {
         props.onHittingZero();
-        clearInterval(inter);
+        clearInterval(intervalRef.current);
       }
     }, 1000);
+    return () => clearInterval(intervalRef.current);
   }, []);
 
   return (
@@ -33,7 +34,7 @@ const Timer = (props) => {
 };
 
 Timer.propTypes = {
-  seconds: PropTypes.number.isRequired,
+  secondsCount: PropTypes.number.isRequired,
   gameStatus: PropTypes.string.isRequired,
   onHittingZero: PropTypes.func.isRequired,
 };
