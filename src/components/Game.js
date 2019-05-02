@@ -5,12 +5,13 @@ import PlayNumber from './PlayNumber';
 import StarsDisplay from './StarsDisplay';
 import PlayAgain from './PlayAgain';
 import Timer from './Timer';
+import SecondsCount from './SecondsCount';
 import './Game.css';
 import useGameState from '../state/gameState';
 
 const Game = (props) => {
   const {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds,
+    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds
   } = useGameState();
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
@@ -48,7 +49,9 @@ const Game = (props) => {
       <div className="body">
         <div className="left">
           {gameStatus !== 'active'
-            ? (<PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />)
+            ? (<><PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+              <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
+            </>)
             : (<StarsDisplay count={stars} />)}
         </div>
         <div className="right">
