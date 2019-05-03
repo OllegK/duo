@@ -11,7 +11,7 @@ import useGameState from '../state/gameState';
 
 const Game = (props) => {
   const {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds
+    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds,
   } = useGameState();
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
@@ -49,9 +49,12 @@ const Game = (props) => {
       <div className="body">
         <div className="left">
           {gameStatus !== 'active'
-            ? (<><PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
-              <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
-            </>)
+            ? (
+              <>
+                <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+                <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
+              </>
+            )
             : (<StarsDisplay count={stars} />)}
         </div>
         <div className="right">

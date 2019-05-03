@@ -2,13 +2,20 @@
   "root": true,
   "extends": [
     "eslint:recommended",
-    "airbnb"
+    "airbnb",
+    "plugin:react/recommended"
   ],
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 2017,
     "sourceType": "module"
   },
-  "plugins": ["react-hooks"],
+  "plugins": [
+    "react-hooks",
+    "react"
+  ],
   "env": {
     "es6": true,
     "browser": true,
@@ -16,10 +23,26 @@
     "node": true
   },
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/destructuring-assignment": [0],
-    "no-nested-ternary": [0],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/destructuring-assignment": [
+      0
+    ],
+    "no-nested-ternary": [
+      0
+    ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/exhaustive-deps": "warn",
+    "max-len": [
+      1,
+      120
+    ]
   }
 }

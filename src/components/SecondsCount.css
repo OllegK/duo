@@ -1,0 +1,9 @@
+.seconds {
+  margin-top: 20px;
+  color: #666;
+}
+
+.secondsSpan {
+  margin-left: 10px;
+  margin-right: 10px;
+}
