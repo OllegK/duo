@@ -8,21 +8,20 @@ const Timer = (props) => {
   const secondsRef = useRef(seconds);
   secondsRef.current = seconds;
 
-  if (props.gameStatus !== 'active') {
-    clearInterval(intervalRef.current);
-  }
+  const { gameStatus, onHittingZero } = props;
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      if (secondsRef.current > 0) {
+      if (gameStatus !== 'active') {
+        clearInterval(intervalRef.current);
+      } else if (secondsRef.current > 0) {
         setSeconds(currentSeconds => currentSeconds - 1);
       } else {
-        props.onHittingZero();
-        clearInterval(intervalRef.current);
+        onHittingZero();
       }
     }, 1000);
     return () => clearInterval(intervalRef.current);
-  }, []);
+  }, [gameStatus, onHittingZero]);
 
   return (
     <div className="timer">

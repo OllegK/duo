@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { utils } from '../utils/utils';
 import PlayNumber from './PlayNumber';
@@ -9,18 +9,17 @@ import SecondsCount from './SecondsCount';
 import './Game.css';
 import useGameState from '../state/gameState';
 
-let firstRun = true;
+let gameStatus = 'firstRun';
 
 const Game = (props) => {
   const {
     stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds,
   } = useGameState();
 
+  const memorizedSetSeconds = useCallback(setSeconds, []);
+
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
-  let gameStatus;
-  if (firstRun) {
-    gameStatus = 'firstRun';
-  } else {
+  if (gameStatus !== 'firstRun') {
     gameStatus = availableNums.length === 0
       ? 'won'
       : secondsLeft === 0 ? 'lost' : 'active';
@@ -58,7 +57,7 @@ const Game = (props) => {
           {gameStatus !== 'active'
             ? (
               <>
-                <PlayAgain onClick={() => { firstRun = false; props.startNewGame(); }} gameStatus={gameStatus} />
+                <PlayAgain onClick={() => { gameStatus = ''; props.startNewGame(); }} gameStatus={gameStatus} />
                 <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
               </>
             )
@@ -77,7 +76,8 @@ const Game = (props) => {
           )}
         </div>
       </div>
-      {!firstRun && <Timer secondsCount={secondsLeft} onHittingZero={setSeconds} gameStatus={gameStatus} />}
+      {gameStatus !== 'firstRun'
+        && <Timer secondsCount={secondsCount} onHittingZero={memorizedSetSeconds} gameStatus={gameStatus} />}
     </div>
   );
 };
