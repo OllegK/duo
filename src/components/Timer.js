@@ -4,9 +4,10 @@ import './Timer.css';
 
 const Timer = (props) => {
   const [seconds, setSeconds] = useState(props.secondsCount);
-  const intervalRef = useRef();
   const secondsRef = useRef(seconds);
-  secondsRef.current = seconds;
+  // secondsRef.current = seconds;
+
+  const intervalRef = useRef();
 
   const { gameStatus, onHittingZero } = props;
 
