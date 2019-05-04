@@ -10,7 +10,7 @@ const SecondsCount = props => (
         {props.seconds}
         &nbsp;
         Seconds
-    </span>
+      </span>
       <button type="button" onClick={() => props.incSeconds()}>+</button>
     </div>
     <div className="seconds">

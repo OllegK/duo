@@ -9,15 +9,22 @@ import SecondsCount from './SecondsCount';
 import './Game.css';
 import useGameState from '../state/gameState';
 
+let firstRun = true;
+
 const Game = (props) => {
   const {
     stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds,
   } = useGameState();
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
-  const gameStatus = availableNums.length === 0
-    ? 'won'
-    : secondsLeft === 0 ? 'lost' : 'active';
+  let gameStatus;
+  if (firstRun) {
+    gameStatus = 'firstRun';
+  } else {
+    gameStatus = availableNums.length === 0
+      ? 'won'
+      : secondsLeft === 0 ? 'lost' : 'active';
+  }
 
   const onNumberClick = (number, currentStatus) => {
     if (gameStatus !== 'active' || currentStatus === 'used') {
@@ -51,7 +58,7 @@ const Game = (props) => {
           {gameStatus !== 'active'
             ? (
               <>
-                <PlayAgain onClick={props.startNewGame} gameStatus={gameStatus} />
+                <PlayAgain onClick={() => { firstRun = false; props.startNewGame(); }} gameStatus={gameStatus} />
                 <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
               </>
             )
@@ -70,7 +77,7 @@ const Game = (props) => {
           )}
         </div>
       </div>
-      <Timer secondsCount={secondsLeft} onHittingZero={setSeconds} gameStatus={gameStatus} />
+      {!firstRun && <Timer secondsCount={secondsLeft} onHittingZero={setSeconds} gameStatus={gameStatus} />}
     </div>
   );
 };
