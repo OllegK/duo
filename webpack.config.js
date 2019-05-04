@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const { env } = process;
 
@@ -27,6 +28,9 @@ const options = {
       title: 'HTML Webpack Plugin',
       favicon: './public/favicon.ico'
     }),
+    new CopyPlugin([
+      { from: __dirname + '/public/robots.txt', to: '' },
+    ]),
     new SWPrecacheWebpackPlugin({
       cacheId: 'my-domain-cache-id',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
