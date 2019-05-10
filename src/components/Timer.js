@@ -15,9 +15,10 @@ const Timer = (props) => {
     intervalRef.current = setInterval(() => {
       if (gameStatus !== 'active') {
         clearInterval(intervalRef.current);
-      } else if (secondsRef.current > 0) {
+      } else if (secondsRef.current > 1) {
         setSeconds(currentSeconds => currentSeconds - 1);
       } else {
+        setSeconds(0);
         onHittingZero();
       }
     }, 1000);
