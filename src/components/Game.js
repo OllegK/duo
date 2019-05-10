@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { utils } from '../utils/utils';
 import PlayNumber from './PlayNumber';
@@ -8,15 +8,20 @@ import Timer from './Timer';
 import SecondsCount from './SecondsCount';
 import './Game.css';
 import useGameState from '../state/gameState';
+import Modal from './Modal';
 
 let gameStatus = 'firstRun';
 
 const Game = (props) => {
   const {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds,
+    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds, handleChangeUserName, userName,
   } = useGameState();
 
   const memorizedSetSeconds = useCallback(setSeconds, []);
+  const memorizedSetUserName = useCallback(handleChangeUserName, []);
+  const memorizedOnClickPlayAgain = useCallback(() => {
+    gameStatus = ''; props.startNewGame();
+  }, []);
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
   if (gameStatus !== 'firstRun') {
@@ -47,8 +52,15 @@ const Game = (props) => {
     return 'available';
   };
 
+  const [showModal, setShowModal] = useState(!userName);
+
+  const toggleModal = () => {
+    setShowModal(currShowModal => !currShowModal);
+  }
+
   return (
     <div className="game">
+      <Modal show={showModal} closeCallback={toggleModal} username={userName} onChange={memorizedSetUserName} />
       <div className="help">
         Pick 1 or more numbers that sum to the number of stars
       </div>
@@ -57,7 +69,7 @@ const Game = (props) => {
           {gameStatus !== 'active'
             ? (
               <>
-                <PlayAgain onClick={() => { gameStatus = ''; props.startNewGame(); }} gameStatus={gameStatus} />
+                <PlayAgain onClick={memorizedOnClickPlayAgain} gameStatus={gameStatus} username={userName} />
                 <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
               </>
             )

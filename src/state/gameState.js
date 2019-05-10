@@ -3,14 +3,22 @@ import { utils } from '../utils/utils';
 
 const useGameState = () => {
   const initialSeconds = Number(localStorage.getItem('seconds')) || 20;
+  const initialName = localStorage.getItem('username') || '';
 
   const [stars, setStars] = useState(utils.random(1, 9));
   const [availableNums, setAvailableNums] = useState(utils.range(1, 9));
   const [candidateNums, setCandidateNums] = useState([]);
   const [secondsLeft, setSecondsLeft] = useState(initialSeconds);
   const [secondsCount, setSecondsCount] = useState(initialSeconds);
+  const [userName, setUserName] = useState(initialName);
+
+  const handleChangeUserName = (event) => {
+    setUserName(event.target.value);
+  };
 
   useEffect(() => localStorage.setItem('seconds', secondsCount), [secondsCount]);
+
+  useEffect(() => localStorage.setItem('username', userName), [userName]);
 
   const setSeconds = () => setSecondsLeft(0);
 
@@ -36,7 +44,8 @@ const useGameState = () => {
   };
 
   return {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds,
+    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount,
+    decSeconds, incSeconds, handleChangeUserName, userName,
   };
 };
 

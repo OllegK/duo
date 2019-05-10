@@ -8,7 +8,7 @@ const PlayAgain = props => (
       className="message"
       style={{ color: props.gameStatus === 'lost' ? 'red' : 'green' }}
     >
-      {props.gameStatus === 'lost' ? 'Game Over' : props.gameStatus === 'firstRun' ? 'Hi' : 'Nice'}
+      {props.gameStatus === 'lost' ? 'Game Over' : props.gameStatus === 'firstRun' ? 'Hi' + (props.username ? ' ' + props.username : '')  : 'Nice'}
     </div>
     <button type="button" onClick={props.onClick}>{props.gameStatus === 'firstRun' ? 'Play Now' : 'Play Again'}</button>
   </div>
@@ -16,6 +16,7 @@ const PlayAgain = props => (
 
 PlayAgain.propTypes = {
   gameStatus: PropTypes.string.isRequired,
+  username: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
