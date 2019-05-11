@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const CopyPlugin = require('copy-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const { env } = process;
 
@@ -19,6 +20,9 @@ const options = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin({
+      verbose: true,
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
       'process.env.PUBLIC_URL': JSON.stringify('')
@@ -87,7 +91,8 @@ const options = {
       "start_url": "./",
       "display": "standalone",
       "theme_color": "#000000",
-      "background_color": "#ffffff"
+      "background_color": "#ffffff",
+      "orientation": "omit",
     })
   ],
   devServer: {

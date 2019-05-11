@@ -14,7 +14,8 @@ let gameStatus = 'firstRun';
 
 const Game = (props) => {
   const {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount, decSeconds, incSeconds, handleChangeUserName, userName,
+    stars, availableNums, candidateNums, secondsLeft, setGameState,
+    setSeconds, secondsCount, decSeconds, incSeconds, handleChangeUserName, userName,
   } = useGameState();
 
   const memorizedSetSeconds = useCallback(setSeconds, []);
@@ -55,8 +56,13 @@ const Game = (props) => {
   const [showModal, setShowModal] = useState(!userName);
 
   const toggleModal = () => {
+    if (showModal) { // currently visible
+      if (!userName) { // do not close if empty
+        return;
+      }
+    }
     setShowModal(currShowModal => !currShowModal);
-  }
+  };
 
   return (
     <div className="game">
