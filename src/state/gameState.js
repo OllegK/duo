@@ -44,8 +44,17 @@ const useGameState = () => {
   };
 
   return {
-    stars, availableNums, candidateNums, secondsLeft, setGameState, setSeconds, secondsCount,
-    decSeconds, incSeconds, handleChangeUserName, userName,
+    stars,
+    availableNums,
+    candidateNums,
+    secondsLeft,
+    setGameState,
+    setSeconds,
+    secondsCount,
+    decSeconds,
+    incSeconds,
+    handleChangeUserName,
+    userName,
   };
 };
 
