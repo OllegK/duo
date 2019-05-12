@@ -7,7 +7,7 @@ const Modal = ({ show, closeCallback, onChange, username }) => {
 
   useEffect(() => {
     nameInput.current.focus();
-  }, []);
+  }, [nameInput]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {

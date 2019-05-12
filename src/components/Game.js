@@ -75,7 +75,7 @@ const Game = (props) => {
           {gameStatus !== 'active'
             ? (
               <>
-                <PlayAgain onClick={memorizedOnClickPlayAgain} gameStatus={gameStatus} username={userName} />
+                <PlayAgain onClick={memorizedOnClickPlayAgain} showModal={toggleModal} gameStatus={gameStatus} username={userName} />
                 <SecondsCount seconds={secondsCount} incSeconds={incSeconds} decSeconds={decSeconds} />
               </>
             )
