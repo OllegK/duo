@@ -12,7 +12,7 @@ import Modal from './Modal';
 
 let gameStatus = 'firstRun';
 
-const Game = (props) => {
+const Game = ({ startNewGame }) => {
   const {
     stars, availableNums, candidateNums, secondsLeft, setGameState,
     setSeconds, secondsCount, decSeconds, incSeconds, handleChangeUserName, userName,
@@ -21,8 +21,8 @@ const Game = (props) => {
   const memorizedSetSeconds = useCallback(setSeconds, []);
   const memorizedSetUserName = useCallback(handleChangeUserName, []);
   const memorizedOnClickPlayAgain = useCallback(() => {
-    gameStatus = ''; props.startNewGame();
-  }, []);
+    gameStatus = ''; startNewGame();
+  }, [startNewGame]);
 
   const candidatesAreWrong = utils.sum(candidateNums) > stars;
   if (gameStatus !== 'firstRun') {
