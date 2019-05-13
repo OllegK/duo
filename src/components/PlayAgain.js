@@ -12,7 +12,7 @@ const PlayAgain = ({ gameStatus, username, onClick, showModal }) => (
         ? 'Game Over' : gameStatus === 'firstRun' ? username ?
         (
           <>
-            Hi&nbsp;
+            Hi<> </>
             <a style={{ borderBottom: '1px dotted', cursor: 'pointer' }} onClick={showModal}>
               {username}
               !
