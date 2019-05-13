@@ -41,7 +41,11 @@ const options = {
       filename: 'service-worker.js',
       minify: true,
       navigateFallback: 'index.html',
-      staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/]
+      staticFileGlobsIgnorePatterns: [/\.map$/, /manifest\.json$/],
+      runtimeCaching: [{
+        urlPattern: /^https:\/\/use\.fontawesome\.com\//,
+        handler: 'cacheFirst'
+      }],
     }),
     new WebpackPwaManifest({
       "short_name": "Duo",
